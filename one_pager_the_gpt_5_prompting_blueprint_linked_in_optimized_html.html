@@ -39,7 +39,7 @@
 
 
     /* 9:16 canvas */
-    .frame-916{width:1080px}
+    .frame-916{width:1280px}
 
     .top{display:flex; align-items:flex-start; justify-content:space-between; gap:24px; border-bottom:1px solid rgba(255,255,255,.06); padding-bottom:14px; margin-bottom:18px}
     .title{display:flex; flex-direction:column; gap:8px}
@@ -128,7 +128,7 @@
 
     /* --- Portrait overrides (9:16) --- */
     .frame-916 .content{padding:40px 44px 30px 44px}
-    .frame-916 h1{font-size:50px; line-height:1.06}
+    .frame-916 h1{font-size:44; line-height:1.06}
     .frame-916 .tagline{font-size:22px}
     .frame-916 .grid{grid-template-columns: 1fr; gap:16px}
     .frame-916 .tips{grid-template-columns: 1fr}
@@ -179,7 +179,7 @@
     }
 
     /* Standardized callout variants */
-    .callout.tip{
+    .callout.good{
       border-left:5px solid var(--accent-2);
       box-shadow:0 4px 18px -8px rgba(0,0,0,.7);
       border-radius:14px;
@@ -187,10 +187,16 @@
     }
     .callout .hd{display:flex; align-items:center; gap:8px; font-weight:600; letter-spacing:.3px; font-size:13px; margin:0 0 4px 0;}
     .callout .icon{font-size:14px; display:inline-flex; align-items:center; justify-content:center; line-height:1;}
-    .callout.tip .icon{color:var(--accent-2);}
-    .callout.warn .icon{color:var(--warn);}
+    .callout.good .icon{color:var(--accent-2);}  
+    .callout.warn .icon{color:var(--warn);}    
+    /* Ensure consistent left-aligned text and spacing in callouts */
+    .callout p{margin:6px 0 0 0; line-height:1.38; font-size:13.2px;}
 
-    @media (max-width:1280px){
+    /* Title for the right-column callouts */
+    .callouts-grid{display:flex; flex-direction:column;}
+    .callouts-title{margin:0 0 6px 0; font-size:12px; color:var(--muted); letter-spacing:.35px; text-transform:uppercase; font-weight:700;}
+
+    @media (max-width:1600px){
       .tip{padding:18px 18px 16px 18px;}
       .tip h3{font-size:17px;}
     }
@@ -405,7 +411,7 @@ section.panel h3 + table tbody tr{line-height:1.15;}
               <div>
                 <h3>Structured prompting</h3>
                 <p>Enter your prompt in (XML / JSON). Typically requires breaking down the problem into smaller parts or different areas already.</p>
-                <div class="example">Example:<br>{<br>&nbsp;&nbsp;"brief": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"goal": "Boost adoption of Microsoft Fabric",<br>&nbsp;&nbsp;&nbsp;&nbsp;"audience": "Data analysts",<br>&nbsp;&nbsp;&nbsp;&nbsp;"constraints": "Use existing Azure subscription only",<br>&nbsp;&nbsp;&nbsp;&nbsp;"metrics": ["ActiveWorkspaces", "QueryVolume"]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"task": "Identify gaps and propose 3 refinements.",<br>&nbsp;&nbsp;"subtasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;"Highlight quick wins achievable in under 1 week.",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Suggest one low-effort, high-impact training initiative."<br>&nbsp;&nbsp;]<br>}<br></div>
+                <div class="example">{<br>&nbsp;&nbsp;"brief": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"goal": "Boost adoption of Microsoft Fabric": "Data analysts",<br>&nbsp;&nbsp;&nbsp;&nbsp;"constraints": "Use existing Azure subscription only",<br>&nbsp;&nbsp;&nbsp;&nbsp;"metrics": ["ActiveWorkspaces", "QueryVolume"]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"task": "Identify gaps and propose 3 refinements.",<br>&nbsp;&nbsp;"subtasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;"Highlight quick wins achievable in under 1 week.",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Suggest one low-effort, high-impact training initiative."<br>&nbsp;&nbsp;]<br>}<br></div>
                 <p style="font-size:11px; line-height:1.35; color:var(--muted); margin:4px 0 0 0;">Remark: The JSON/XML wrapper alone doesn't magically improve model quality; its value is that it forces you to slow down, clarify intent, expose missing fields, and think more rigorously about the prompt.</p>
               </div>
             </article>
@@ -480,6 +486,7 @@ section.panel h3 + table tbody tr{line-height:1.15;}
             
             <!-- Right column callouts next to model mapping -->
             <div class="callouts-grid">
+              <div class="callouts-title">General hints</div>
               <div class="panel callout warn">
                 <div class="hd">
                   <span class="icon">⚠</span>
@@ -487,7 +494,7 @@ section.panel h3 + table tbody tr{line-height:1.15;}
                 </div>
                 <p>Conflicts make GPT-5 spend tokens reconciling the irreconcilable - you lose speed, quality, and money. Keep hierarchy and priority explicit.</p>
               </div>
-              <div class="panel callout tip" style="margin-top:8px;">
+              <div class="panel callout good" style="margin-top:8px;">
                 <div class="hd">
                   <span class="icon">💡</span>
                   <span>Be explicit</span>
