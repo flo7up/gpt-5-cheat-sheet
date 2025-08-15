@@ -178,7 +178,17 @@
       background:linear-gradient(145deg,rgba(255,211,106,.10),rgba(255,211,106,.04));
     }
 
-
+    /* Standardized callout variants */
+    .callout.tip{
+      border-left:5px solid var(--accent-2);
+      box-shadow:0 4px 18px -8px rgba(0,0,0,.7);
+      border-radius:14px;
+      background:linear-gradient(145deg,rgba(140,255,138,.10),rgba(140,255,138,.04));
+    }
+    .callout .hd{display:flex; align-items:center; gap:8px; font-weight:600; letter-spacing:.3px; font-size:13px; margin:0 0 4px 0;}
+    .callout .icon{font-size:14px; display:inline-flex; align-items:center; justify-content:center; line-height:1;}
+    .callout.tip .icon{color:var(--accent-2);}
+    .callout.warn .icon{color:var(--warn);}
 
     @media (max-width:1280px){
       .tip{padding:18px 18px 16px 18px;}
@@ -288,16 +298,7 @@ section.panel h3 + table tbody tr{line-height:1.15;}
       letter-spacing:.35px;
       color:var(--accent);
     }
-    .tip.mapping-tip:before{
-      content:"REFERENCE";
-      position:absolute;
-      top:10px;
-      right:14px;
-      font-size:10px;
-      letter-spacing:.7px;
-      font-weight:600;
-      color:rgba(255,255,255,.38);
-    }
+
     .tip.mapping-tip .num{display:none;}
 
     .tip.mapping-tip table{
@@ -344,67 +345,12 @@ section.panel h3 + table tbody tr{line-height:1.15;}
               <div>
                 <h3>Think deeper / harder</h3>
                 <p>Force multi-pass reasoning: generate alternatives, compare, then justify the choice.</p>
-                <div class="example">Example: Analyze this marketing strategy from a CEO, customer, and competitor perspective; recommend the best approach. Think Harder</div>
+                <div class="example">Example: Analyze this marketing strategy ...; recommend the best approach. <span style="color: var(--accent-2); font-weight: 600;">Think Harder</span></div>
               </div>
             </article>
             <!-- Tip 2 -->
             <article class="tip">
               <div class="num">2</div>
-              <div>
-                <h3>Ultra prompting</h3>
-                <p>Explicitly invoke a longer reasoning mode: break down → clarify → plan → validate.</p>
-                <div class="example">Example: Spend up to 5 minutes listing all plausible causes of declining sales, question each assumption, then rank the top three drivers. <br> Questions your own assumptions and take into account as many perspectives as possible. Evaluate the final result, identify gaps and compare alternative approaches.</div>
-              </div>
-            </article>
-            <!-- Tip 3 -->
-            <article class="tip">
-              <div class="num">3</div>
-              <div>
-                <h3>Plan before answering</h3>
-                <p>Require a structured plan (tasks, clarifications, approach, validation) before final output.</p>
-                <div class="flow">
-                  <span class="chip alt">Decompose</span><span class="arrow"></span>
-                  <span class="chip alt">Clarify</span><span class="arrow"></span>
-                  <span class="chip alt">Approach</span><span class="arrow"></span>
-                  <span class="chip alt">Validate</span>
-                </div>
-                <div class="example">Example: First draft a step-by-step plan for a renewable energy adoption whitepaper. Details each step. Set up evaluate criteria for the result. Then execute the plan.</div>
-              </div>
-            </article>
-            <!-- Tip 4 -->
-            <article class="tip">
-              <div class="num">4</div>
-              <div>
-                <h3>Mental to‑do list</h3>
-                <p>Have the model surface objective, subtasks, risks, and success checks up front.</p>
-                <div class="flow">
-                  <span class="chip alt">Objective</span><span class="arrow"></span>
-                  <span class="chip alt">Subtasks</span><span class="arrow"></span>
-                  <span class="chip alt">Risks</span><span class="arrow"></span>
-                  <span class="chip alt">Criteria</span>
-                </div>
-                <div class="example">Example: Produce: objective, 5 subtasks, 3 risks with mitigations, and acceptance criteria for the launch brief.</div>
-              </div>
-            </article>
-            <!-- Tip 5 -->
-            <article class="tip">
-              <div class="num">5</div>
-              <div>
-                <h3>Structured prompting</h3>
-                <p>Enter your prompt in (XML / JSON). Typically requires breaking down the problem into smaller parts or different areas already.</p>
-                <div class="example">Example:<br>
-&lt;brief&gt;<br>
-&nbsp;&nbsp;&lt;goal&gt;Improve onboarding conversion&lt;/goal&gt;<br>
-&nbsp;&nbsp;&lt;audience&gt;New SaaS users&lt;/audience&gt;<br>
-&nbsp;&nbsp;&lt;constraints&gt;Keep dev scope &lt; 2 weeks&lt;/constraints&gt;<br>
-&nbsp;&nbsp;&lt;metrics&gt;ActivationRate,Day7Retention&lt;/metrics&gt;<br>
-&lt;/brief&gt;<br>
-Then ask: “Identify gaps and propose 3 refinements.”</div>
-              </div>
-            </article>
-            <!-- Tip 6 -->
-            <article class="tip">
-              <div class="num">6</div>
               <div>
                 <h3>Iterative refinement</h3>
                 <p>Self‑evaluate against a numeric quality bar; revise until threshold met.</p>
@@ -417,6 +363,68 @@ Then ask: “Identify gaps and propose 3 refinements.”</div>
                 <div class="example">Example: Draft the proposal, self‑score clarity 1–10; if &lt;9 refine and list changes made.</div>
               </div>
             </article>
+            <!-- Tip 3 -->
+            <article class="tip">
+              <div class="num">3</div>
+              <div>
+                <h3>Planning phases</h3>
+                <p>Require a structured plan (tasks, clarifications, approach, validation) before final output.</p>
+                <div class="flow">
+                  <span class="chip alt">Decompose</span><span class="arrow"></span>
+                  <span class="chip alt">Clarify</span><span class="arrow"></span>
+                  <span class="chip alt">Approach</span><span class="arrow"></span>
+                  <span class="chip alt">Validate</span>
+                </div>
+                <div class="example">Before responding, please:
+                  1. Decompose the request into core components
+                  2. Identify any ambiguities that need clarification
+                  3. Create a structured approach to address each component
+                  4. Validate your understanding before proceeding </div>
+              <div class="source" style="font-size: 10px; color: var(--muted); margin-top: 6px;">source: based on Pietro Schirano</div>
+              </div>
+            </article>
+            <!-- Tip 4 -->
+            <article class="tip">
+              <div class="num">4</div>
+              <div>
+                <h3>Mental to‑do list</h3>
+                <p>Have the model surface objective, subtasks, risks, and success checks up front.</p>
+                <div class="flow">
+                  <span class="chip alt">Objective</span><span class="arrow"></span>
+                  <span class="chip alt">Subtasks</span><span class="arrow"></span>
+                  <span class="chip alt">Validation</span><span class="arrow"></span>
+                  <span class="chip alt">Review</span>
+                </div>
+                <div class="example">Example: My overall goal is... Subtask 1 is.. Subtask 2 is.. more subtasks... Validation that the solution fullfils..., Conduct a final review until...</div>
+              <div class="source" style="font-size: 10px; color: var(--muted); margin-top: 6px;">source: based on Pietro Schirano</div>
+              </div>
+            </article>
+            <!-- Tip 5 -->
+            <article class="tip">
+              <div class="num">5</div>
+              <div>
+                <h3>Structured prompting</h3>
+                <p>Enter your prompt in (XML / JSON). Typically requires breaking down the problem into smaller parts or different areas already.</p>
+                <div class="example">Example:<br>{<br>&nbsp;&nbsp;"brief": {<br>&nbsp;&nbsp;&nbsp;&nbsp;"goal": "Boost adoption of Microsoft Fabric",<br>&nbsp;&nbsp;&nbsp;&nbsp;"audience": "Data analysts",<br>&nbsp;&nbsp;&nbsp;&nbsp;"constraints": "Use existing Azure subscription only",<br>&nbsp;&nbsp;&nbsp;&nbsp;"metrics": ["ActiveWorkspaces", "QueryVolume"]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"task": "Identify gaps and propose 3 refinements.",<br>&nbsp;&nbsp;"subtasks": [<br>&nbsp;&nbsp;&nbsp;&nbsp;"Highlight quick wins achievable in under 1 week.",<br>&nbsp;&nbsp;&nbsp;&nbsp;"Suggest one low-effort, high-impact training initiative."<br>&nbsp;&nbsp;]<br>}<br></div>
+                <p style="font-size:11px; line-height:1.35; color:var(--muted); margin:4px 0 0 0;">Remark: The JSON/XML wrapper alone doesn't magically improve model quality; its value is that it forces you to slow down, clarify intent, expose missing fields, and think more rigorously about the prompt.</p>
+              </div>
+            </article>
+            <!-- Tip 6 -->
+            <article class="tip">
+              <div class="num">6</div>
+              <div>
+                <h3>Ultrathink prompting</h3>
+                <p>Explicitly invoke a longer reasoning mode: break down → clarify → plan → validate.</p>
+                <div class="flow">
+                  <span class="chip alt">Think</span><span class="arrow"></span>
+                  <span class="chip alt">Think more</span><span class="arrow"></span>
+                  <span class="chip alt">Repeat to create scenarios</span><span class="arrow"></span>
+                  <span class="chip alt">Validate and Consolidate</span>
+                </div>
+                <div class="example">Example: First, spend up to 5 minutes listing all plausible causes of declining sales, challenge each one with counterarguments, and consider even unlikely explanations. If you don't have the answer after 5 minutes, keep thinking until you do. Triple verify everything. Rank the top three drivers, then recheck your reasoning using alternative methods or data sources. Identify gaps, hidden assumptions, and compare alternative solutions before finalizing.</div>
+                <div class="source" style="font-size: 10px; color: var(--muted); margin-top: 6px;">source: based on Alex duffy</div>
+              </div>
+            </article>
             <!-- Tip 7 -->
             <article class="tip">
               <div class="num">7</div>
@@ -426,11 +434,29 @@ Then ask: “Identify gaps and propose 3 refinements.”</div>
                 <div class="example">Example: Suggest 3 prompt tweaks to increase specificity while preserving scope; explain each tweak’s benefit.</div>
               </div>
             </article>
+            
+            <!-- Tip 8 -->
+            <article class="tip">
+              <div class="num">8</div>
+              <div>
+                <h3>Share thought process</h3>
+                <p>Ask the model to surface its reasoning path: steps taken, key assumptions, alternatives considered, and why the final answer was chosen.</p>
+                <div class="flow">
+                  <span class="chip alt">Answer</span><span class="arrow"></span>
+                  <span class="chip alt">Steps</span><span class="arrow"></span>
+                  <span class="chip alt">Assumptions</span><span class="arrow"></span>
+                  <span class="chip alt">Alternatives</span><span class="arrow"></span>
+                  <span class="chip alt">Rationale</span>
+                </div>
+                <div class="example">Example: Create a marketing plan for my startup (details below). Share your thought process step by step: list assumptions, outline options considered, explain evaluation criteria, and justify the final plan.</div>
+              </div>
+            </article>
+            
             <!-- Model mapping reference (was numbered 8; number removed & full-width) -->
             <article class="tip mapping-tip">
               <!-- removed numeric badge -->
               <div>
-                <h3>Model mapping (source: https://openai.com/index/gpt-5-system-card/)</h3>
+                <h3>Model mapping</h3>
                 <table aria-label="Model mapping table">
                   <thead>
                     <tr>
@@ -448,21 +474,29 @@ Then ask: “Identify gaps and propose 3 refinements.”</div>
                     <tr><td>6</td><td>OpenAI o3 Pro</td><td>gpt-5-thinking-pro</td></tr>
                   </tbody>
                 </table>
+                <p style="font-size: 10px; color: var(--muted); margin-top: 6px;">source: https://openai.com/index/gpt-5-system-card/</p>
               </div>
             </article>
+            
+            <!-- Right column callouts next to model mapping -->
+            <div class="callouts-grid">
+              <div class="panel callout warn">
+                <div class="hd">
+                  <span class="icon">⚠</span>
+                  <span>Avoid conflicting instructions</span>
+                </div>
+                <p>Conflicts make GPT-5 spend tokens reconciling the irreconcilable - you lose speed, quality, and money. Keep hierarchy and priority explicit.</p>
+              </div>
+              <div class="panel callout tip" style="margin-top:8px;">
+                <div class="hd">
+                  <span class="icon">💡</span>
+                  <span>Be explicit</span>
+                </div>
+                <p>Be explicit about tone and style. Use consistent formatting, define expectations, be careful about your own tone as the model adapts. Control verbosity and tool calling behavior.</p>
+              </div>
+            </div>
           </div>
         </section>
-
-        <!-- Callout moved to very bottom -->
-        <aside class="panel callouts" style="margin-top:8px; margin-bottom:0;">
-          <div class="panel callout warn">
-            <div class="hd">
-              <span class="warn-icon">⚠</span>
-              <span>Avoid conflicting instructions</span>
-            </div>
-            <p>Conflicts make GPT-5 spend tokens reconciling the irreconcilable - you lose speed, quality, and money. Keep hierarchy and priority explicit.</p>
-          </div>
-        </aside>
       </div>
     </div>
   </div>
